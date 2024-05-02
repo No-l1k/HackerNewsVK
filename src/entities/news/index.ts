@@ -4,4 +4,5 @@ export type {IArticle}
 import NewsArticle from './ui/NewsArticle/NewsArticle';
 export {NewsArticle}
 
-export { newsApi } from './api/NewsApi';
+export * from './api/NewsApi';
+export { useGetNewStoriesQuery, useGetStoryByIdQuery } from './api/NewsApi';
