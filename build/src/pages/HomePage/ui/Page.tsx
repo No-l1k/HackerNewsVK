@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { RefreshButton } from '../../../shared';
 import { useGetNewStoriesQuery, NewsArticle } from '../../../entities/news';
 
-const Page: React.FC = () => {
+const HomePage: React.FC<{id:string}> = ({id}) => {
   const [news, setNews] = useState<number[]>([]);
   const { data: newStoryIds = [], refetch } = useGetNewStoriesQuery({});
   const storiesSlice = news.slice(0, 100);
@@ -32,4 +32,4 @@ const Page: React.FC = () => {
   );
 };
 
-export default Page;
+export default HomePage;
