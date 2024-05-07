@@ -4,7 +4,7 @@
 
 ## Мини-приложение
 app id: 51913557
-Адрес приложения: https://stage-app51913557-391dac43bf85.pages.vk-apps.com/index.html
+Адрес приложения: https://stage-app51913557-2db36bd4c5e8.pages.vk-apps.com/index.html
 
 ## Инструкция по запуску
 
