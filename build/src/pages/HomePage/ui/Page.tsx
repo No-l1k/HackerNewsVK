@@ -4,17 +4,21 @@ import { useGetNewStoriesQuery, NewsArticle } from '../../../entities/news';
 
 const Page: React.FC = () => {
   const [news, setNews] = useState<number[]>([]);
+  const { data: newStoryIds = [], refetch } = useGetNewStoriesQuery({});
   const storiesSlice = news.slice(0, 100);
-  const { data: newStories = [] } = useGetNewStoriesQuery({});
 
   useEffect(() => {
-    if (newStories.length > 0) {
-      setNews(newStories);
+    if (newStoryIds.length > 0) {
+      setNews(newStoryIds);
     }
-  }, [newStories]);
+  }, [newStoryIds]);
 
-  const handleRefresh = () => {
-    setNews(newStories); 
+  const handleRefresh = async () => {
+    try {
+      await refetch(); 
+    } catch (error) {
+      console.error("Ошибка при обновлении статей:", error);
+    }
   };
 
   return (
