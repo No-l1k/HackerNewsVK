@@ -1,13 +1,21 @@
 import React from 'react';
+import { IComment } from '../../model/types';
 
-const CommentList: React.FC = () => {
-  // Логика отображения списка комментариев в виде дерева
+interface CommentTreeProps {
+  comments: IComment[];
+}
 
-  return (
-    <div>
-      {/* Список комментариев */}
-    </div>
-  );
+const CommentList: React.FC<CommentTreeProps> = ({ comments }) => {
+  const renderComments = (comments: IComment[]) => {
+    return comments.map(comment => (
+      <div key={comment.id} style={{ marginLeft: comment.level * 20 }}>
+        <p>{comment.text}</p>
+        {comment.replies.length > 0 && renderComments(comment.replies)}
+      </div>
+    ));
+  };
+
+  return <div>{renderComments(comments)}</div>;
 };
 
 export default CommentList;

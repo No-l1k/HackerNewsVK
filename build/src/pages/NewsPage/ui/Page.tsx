@@ -8,7 +8,7 @@ import CommentList from './CommentList/CommentList';
 import { IArticle } from '../../../entities/news';
 import { Panel } from '@vkontakte/vkui';
 
-const NewsPage: React.FC<{id:string}> = ({ id }) => {
+const NewsPage: React.FC<{ id: string }> = ({ id }) => {
     const params = useParams();
     const storyId = params?.storyId;
     const { data: article } = useGetStoryByIdQuery(Number(storyId));
@@ -24,9 +24,10 @@ const NewsPage: React.FC<{id:string}> = ({ id }) => {
     return (
         <Panel id={id}>
             <div>
+                <a href={article.url}>Ссылка на новость</a>
                 <NewsHeader article={articleWithFormattedDate} />
-                <CommentCounter />
-                <CommentList />
+                <CommentCounter count={article.kids?.length || 0} />
+                <CommentList comments={article.kids || []} />
             </div>
         </Panel>
     );

@@ -3,5 +3,6 @@ export interface IArticle {
     rating: number;
     author: string;
     publishedDate: string;
+    url: string;
   }
 
