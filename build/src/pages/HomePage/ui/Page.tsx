@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { RefreshButton } from '../../../shared';
 import { useGetNewStoriesQuery, NewsArticle } from '../../../entities/news';
 
-const HomePage: React.FC<{id:string}> = ({id}) => {
+const HomePage: React.FC<{id:string}> = ({}) => {
   const [news, setNews] = useState<number[]>([]);
   const { data: newStoryIds = [], refetch } = useGetNewStoriesQuery({});
   const storiesSlice = news.slice(0, 100);
@@ -12,6 +12,14 @@ const HomePage: React.FC<{id:string}> = ({id}) => {
       setNews(newStoryIds);
     }
   }, [newStoryIds]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      refetch();
+    }, 60000); 
+
+    return () => clearInterval(intervalId); 
+  }, [refetch]);
 
   const handleRefresh = async () => {
     try {
